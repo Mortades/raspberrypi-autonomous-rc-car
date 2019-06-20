@@ -71,7 +71,7 @@ def right():
     GPIO.output(pinMotorBForwards, 0)
     GPIO.output(pinMotorBBackwards, 1)
 
-WideLeftTurn(5)
+WideRightTurn(5)
 
 
 #forwards()
