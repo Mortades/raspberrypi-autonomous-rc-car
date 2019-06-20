@@ -52,7 +52,7 @@ def left():
     GPIO.output(pinMotorABackwards, 1)
     GPIO.output(pinMotorBForwards, 1)
     GPIO.output(pinMotorBBackwards, 0)
-# Homebrew WideTurnLeft
+# Homebrew WideTurnRight
 def WideRightTurn(duration):
     GPIO.output(pinMotorABackwards, 0)
     GPIO.output(pinMotorBBackwards, 0)
@@ -64,6 +64,18 @@ def WideRightTurn(duration):
          GPIO.output(pinMotorAForwards, 0)
          time.sleep(0.5)
 
+# Homebrew WideTurnLeft
+def WideLeftTurn(duration):
+    GPIO.output(pinMotorBBackwards, 0)
+    GPIO.output(pinMotorABackwards, 0)
+    GPIO.output(pinMotorAForwards, 1)
+# Loop for 1 second per each duration turning A on and off to replicate half speed
+    for i in range(duration):
+         GPIO.output(pinMotorBForwards, 1)
+         time.sleep(0.5)
+         GPIO.output(pinMotorBForwards, 0)
+         time.sleep(0.5)
+         
 # Turn Right
 def right():
     GPIO.output(pinMotorAForwards, 1)
@@ -73,15 +85,16 @@ def right():
 
 WideRightTurn(5)
 
+WideLeftTurn(5)
 
-#forwards()
-#time.sleep(1)  # Pause for 1 second
+forwards()
+time.sleep(1)  # Pause for 1 second
 
 #left()
 #time.sleep(0.5)  # Pause for half a second
 
-#forwards()
-#time.sleep(1)
+backwards()
+time.sleep(1)
 
 #right()
 #time.sleep(0.5)
