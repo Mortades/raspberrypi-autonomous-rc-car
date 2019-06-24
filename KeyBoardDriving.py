@@ -107,6 +107,7 @@ while True:
     keyboard_input = getch.getche()
     if keyboard_input == 'w':
         forwards()
+        print('Going Forward')
     if keyboard_input == 's':
         backwards()
     if keyboard_input == " ":
@@ -115,5 +116,8 @@ while True:
         left()
     if keyboard_input == "d":
         right()
-
+    if keyboard_input == "q":
+        WideLeftTurn()
+    if keyboard_input == "e":
+        WideRightTurn()
 GPIO.cleanup()
