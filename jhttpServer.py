@@ -1,7 +1,7 @@
 import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
-
-host_name = '192.168.1.119'  # Change this to your Raspberry Pi IP address
+from KeyBoardDriving import stopmotors, left, right, forwards, backwards
+host_name = '192.168.1.111'  # Change this to your Raspberry Pi IP address
 host_port = 9000
 
 
@@ -30,18 +30,19 @@ class MyServer(BaseHTTPRequestHandler):
         """
         html = '''
             <html>
-            <body style="width:960px; margin: 20px auto;">
+            <body style="width:960px; margin: 200px auto;">
             <h1>Remote Control</h1>
-            <p>Current GPU temperature is {}</p>
             <form action="/" method="POST">
                 Direction :
+                <p>____.<input type="submit" name="submit" value="Forwards">.____<p>
                 <input type="submit" name="submit" value="Left">
+                <input type="submit" name="submit" value="Stop">
                 <input type="submit" name="submit" value="Right">
+                <p>____<input type="submit" name="submit" value="Backwards">_____<p>
             </form>
             </body>
             </html>
         '''
-        # temp = os.popen("/opt/vc/bin/vcgencmd measure_temp").read()
         temp = '1'
         self.do_HEAD()
         self.wfile.write(html.format(temp[5:]).encode("utf-8"))
@@ -60,12 +61,16 @@ class MyServer(BaseHTTPRequestHandler):
         # GPIO.setup(18, GPIO.OUT)
         print('Line 61')
 
-        if post_data == 'On':
-            # GPIO.output(18, GPIO.HIGH)
-            print('line 65')
-        else:
-            # GPIO.output(18, GPIO.LOW)
-            print('line 68')
+        if post_data == 'Forwards':
+            forwards()
+        elif post_data == 'Backwards':
+            backwards()
+        elif post_data == 'Stop':
+            stopmotors()
+        elif post_data == 'Left':
+            left()
+        elif post_data == 'Right':
+            right()
         print("Car is going {}".format(post_data))
         self._redirect('/')  # Redirect back to the root url
 
