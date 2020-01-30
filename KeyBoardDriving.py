@@ -102,22 +102,22 @@ def right():
 # #time.sleep(0.5)
 #
 # stopmotors()
-
-while True:
-    keyboard_input = getch.getche()
-    if keyboard_input == 'w':
-        forwards()
-        print('Going Forward')
-    if keyboard_input == 's':
-        backwards()
-    if keyboard_input == " ":
-        stopmotors()
-    if keyboard_input == "a":
-        left()
-    if keyboard_input == "d":
-        right()
-    if keyboard_input == "q":
-        WideLeftTurn()
-    if keyboard_input == "e":
-        WideRightTurn()
-GPIO.cleanup()
+if __name__ == "__main__":
+    while True:
+        keyboard_input = getch.getche()
+        if keyboard_input == 'w':
+            forwards()
+            print('Going Forward')
+        if keyboard_input == 's':
+            backwards()
+        if keyboard_input == " ":
+            stopmotors()
+        if keyboard_input == "a":
+            left()
+        if keyboard_input == "d":
+            right()
+        if keyboard_input == "q":
+            WideLeftTurn()
+        if keyboard_input == "e":
+            WideRightTurn()
+    GPIO.cleanup()
