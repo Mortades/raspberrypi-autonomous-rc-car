@@ -1,7 +1,7 @@
 import os
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from KeyBoardDriving import stopmotors, left, right, forwards, backwards
-host_name = '192.168.1.111'  # Change this to your Raspberry Pi IP address
+host_name = '192.168.1.116'  # Change this to your Raspberry Pi IP address
 host_port = 9000
 
 
@@ -30,7 +30,7 @@ class MyServer(BaseHTTPRequestHandler):
         """
         html = '''
             <html>
-            <body style="width:960px; margin: 200px auto;">
+            <body style="width:960px;height:200px; margin: 50px auto; align=center;">
             <h1>Remote Control</h1>
             <form action="/" method="POST">
                 Direction :
@@ -39,6 +39,7 @@ class MyServer(BaseHTTPRequestHandler):
                 <input type="submit" name="submit" value="Stop">
                 <input type="submit" name="submit" value="Right">
                 <p>____<input type="submit" name="submit" value="Backwards">_____<p>
+		<IFRAME src="http://192.168.1.116:8080/stream_simple.html" align="center" width="320" height="240" scrolling="no" frameborder="no" marginheight="0px"></IFRAME>
             </form>
             </body>
             </html>
